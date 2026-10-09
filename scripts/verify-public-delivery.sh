@@ -19,10 +19,14 @@ done
 curl -fsSL --retry 2 "$repo/archive/refs/heads/main.tar.gz" -o "$tmp/github.tar.gz"
 tar -tzf "$tmp/github.tar.gz" > "$tmp/github-files.txt"
 grep -Eq '/skills/attio-crm/SKILL\.md$' "$tmp/github-files.txt"
+mkdir "$tmp/site-pack" "$tmp/github-pack"
+tar -xzf "$tmp/attio-crm-agent.tar.gz" -C "$tmp/site-pack"
+tar -xzf "$tmp/github.tar.gz" --strip-components=1 -C "$tmp/github-pack"
+diff -qr "$tmp/site-pack" "$tmp/github-pack"
 
 if grep -Eq 'drv_li[A-Za-z0-9_-]+' "$tmp/index.html"; then
   echo 'Public page contains a Drive token' >&2
   exit 1
 fi
 
-echo 'Public page, direct archive, checksum, and GitHub archive verified without credentials.'
+echo 'Public page, checksum, and matching GitHub/direct archives verified without credentials.'
