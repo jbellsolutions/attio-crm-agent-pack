@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Attio CRM agent — handoff</title>
+  <style>
+    body { font: 16px/1.5 system-ui, sans-serif; max-width: 46rem; margin: 2rem auto; padding: 0 1rem; color: #111; }
+    a { color: #0b57d0; }
+    code { font-size: 0.9em; background: #f2f2f2; padding: 0 3px; border-radius: 3px; }
+    pre { background: #f6f6f6; padding: 0.8rem 1rem; border-radius: 8px; overflow-x: auto; }
+    pre code { background: none; padding: 0; }
+    .box { border: 1px solid #ddd; padding: 1rem 1.1rem; border-radius: 8px; background: #fafafa; }
+    table { border-collapse: collapse; width: 100%; margin: 0.5rem 0 1rem; }
+    th, td { border: 1px solid #ddd; padding: 5px 8px; text-align: left; font-size: 0.92em; }
+    th { background: #f6f6f6; }
+    h2 { border-bottom: 1px solid #eee; padding-bottom: 3px; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <h1>Attio CRM specialist — agent handoff</h1>
+  <p>This page is the handoff. The full pack contains the plugin, 11 skills, API references, and charter. Anyone with the links below can download it without a credential.</p>
+
+  <div class="box">
+    <p><strong>Public GitHub:</strong> <a href="https://github.com/jbellsolutions/attio-crm-agent-pack">github.com/jbellsolutions/attio-crm-agent-pack</a></p>
+    <pre><code>git clone https://github.com/jbellsolutions/attio-crm-agent-pack.git</code></pre>
+    <p><strong>Direct download:</strong> <a href="/attio-crm-agent.tar.gz" download>attio-crm-agent.tar.gz</a> (<a href="/attio-crm-agent.tar.gz.sha256">SHA-256</a>). If GitHub is blocked, use:</p>
+    <pre><code>curl -fL https://gleaming-buddha-49nk.here.now/attio-crm-agent.tar.gz -o attio-crm-agent.tar.gz
+mkdir -p attio-crm-agent
+tar -xzf attio-crm-agent.tar.gz -C attio-crm-agent</code></pre>
+    <p><strong>Installing without Cloudroom:</strong> copy <code>skills/</code> into your agent's skills directory and keep <code>CHARTER.md</code> + <code>references/</code> beside them. Read the charter and router skill before using the pack.</p>
+    <p><strong>Plugin (Cloudroom only):</strong> <code>bb-plugin-attio-crm</code> v1.0.0 — install from the repo root (<code>package.json</code> + <code>server.ts</code> + <code>skills/</code>), or <code>room-cli plugin install git:https://github.com/jbellsolutions/attio-crm-agent-pack.git@main</code>.</p>
+    <p><strong>Start reading:</strong> <code>HANDOFF.md</code> → <code>CHARTER.md</code> → skill <code>skills/attio-crm/SKILL.md</code> (router).</p>
+  </div>
+
+  <h2>What this is</h2>
+  <p>A fully specified <strong>Attio CRM Operator</strong> agent for GrokBot: charter, 11 specialist skills, packet contract, live GrokBot schema (audited 2026-10-04), MCP/API playbook, and human-dashboard knowledge. It is the <strong>only</strong> writer of the live Attio workspace. Charter load is <strong>not</strong> permission to write.</p>
+
+  <h2>Skills (load as needed)</h2>
+  <table>
+    <tr><th>Skill</th><th>When</th></tr>
+    <tr><td><code>attio-crm</code></td><td>Always — router</td></tr>
+    <tr><td><code>attio-crm-operator</code></td><td>Record writes, notes, tasks</td></tr>
+    <tr><td><code>attio-packet-contract</code></td><td>Inbox/handoff JSON</td></tr>
+    <tr><td><code>attio-pipeline-lists</code></td><td>ES / RPP list entries, stages</td></tr>
+    <tr><td><code>attio-affiliate-quota</code></td><td>3 intros/month, credit, views</td></tr>
+    <tr><td><code>attio-upsell-tagging</code></td><td>RPP + Mastermind primes</td></tr>
+    <tr><td><code>attio-dedupe-and-assert</code></td><td>Merge proposals only</td></tr>
+    <tr><td><code>attio-schema-governance</code></td><td>New attributes/lists (propose)</td></tr>
+    <tr><td><code>attio-mcp-and-api</code></td><td>Tool choice, rates, formats</td></tr>
+    <tr><td><code>attio-human-dashboard</code></td><td>Views humans use</td></tr>
+    <tr><td><code>attio-daily-ops</code></td><td>Weekday cadence</td></tr>
+  </table>
+
+  <h2>API / MCP docs</h2>
+  <p>In-repo (fetched 2026-10-08, live URLs on each file): <code>references/attio-official/</code> — plus <code>references/mcp-tools.md</code>, <code>rest-api.md</code>, <code>write-formats.md</code>, <code>webhooks.md</code>, <code>grokbot-live-schema.md</code>.</p>
+  <p>Official live docs:</p>
+  <ul>
+    <li>MCP: <a href="https://docs.attio.com/mcp/overview">docs.attio.com/mcp/overview</a></li>
+    <li>REST: <a href="https://docs.attio.com/rest-api/overview">docs.attio.com/rest-api/overview</a></li>
+    <li>Auth: <a href="https://docs.attio.com/rest-api/guides/authentication">authentication</a> · Rate limits: <a href="https://docs.attio.com/rest-api/guides/rate-limiting">rate-limiting</a> · Filters: <a href="https://docs.attio.com/rest-api/guides/filtering-and-sorting">filtering-and-sorting</a> · Objects/lists: <a href="https://docs.attio.com/docs/objects-and-lists">objects-and-lists</a></li>
+  </ul>
+  <p><strong>Connect MCP:</strong> <code>https://mcp.attio.com/mcp</code> (OAuth as Justin). REST only for schema/webhooks; token stays in secret storage as <code>ATTIO_API_KEY</code>, never in the repo.</p>
+
+  <h2>Hard rules</h2>
+  <ul>
+    <li>No Attio writes unless Justin says <strong>apply</strong> / <strong>write live</strong>. No <code>create-record</code> / <code>update-record</code> / <code>merge-records</code> / list mutations / webhook POST without that.</li>
+    <li>Propose, don't create: People counters, <code>affiliate_credits</code> list, <code>upsell_rpp</code> / <code>upsell_mastermind</code>.</li>
+    <li>Plus-object quota ≈ 5. Do not add a fifth object; credits = People list.</li>
+    <li>MCP cannot create attributes or saved views.</li>
+    <li>Never commit tokens, <code>.env</code>, or <code>box-secrets.json</code>.</li>
+  </ul>
+
+  <h2>Workspace facts (do not invent IDs)</h2>
+  <table>
+    <tr><th>Thing</th><th>ID</th></tr>
+    <tr><td>Expert Series list</td><td><code>expert_series</code> / <code>5b1fc79a-d0d4-43b9-967c-0d988a9d7601</code></td></tr>
+    <tr><td>RPP list</td><td><code>partner_relationships</code> / <code>4aa6ec09-1289-4d14-8582-01eeda781dab</code></td></tr>
+    <tr><td>Objects</td><td><code>people</code>, <code>companies</code>, <code>deals</code>, <code>partners</code></td></tr>
+    <tr><td><code>first_reply_date</code> on RPP</td><td><code>abe6ee08-a7c4-480c-adf3-5a758097212c</code></td></tr>
+  </table>
+
+  <h2>Products &amp; decisions</h2>
+  <ul>
+    <li>Products: <strong>Revenue Partnerships (RPP)</strong> and <strong>AI Guy Mastermind</strong>. Upsell Prime = 2+ facts (self-ID, close, high-intent).</li>
+    <li>Everyone is an affiliate. Quota = 3 credited intros / calendar month. Attribution is a named intro, not a closed deal. See <code>docs/adr/0001-everyone-is-an-affiliate.md</code>.</li>
+    <li>Rule provenance: <code>SOURCE-MAP.md</code>.</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "bb-plugin-attio-crm",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudroom plugin + agent skill pack: Attio CRM operator, affiliate quota, MCP/API.",
+  "license": "UNLICENSED",
+  "bb": {
+    "name": "Attio CRM",
+    "description": "Sole-writer Attio CRM operator: pipelines, 3-referral monthly quota, RPP and Mastermind upsells, MCP and REST.",
+    "branding": { "icon": "Users" },
+    "server": "./server.ts",
+    "skills": ["skills"]
+  }
+}

@@ -1,0 +1,11 @@
+.env
+.env.*
+*.pem
+*secret*
+*token*
+box-secrets.json
+.DS_Store
+node_modules/
+.herenow/
+share/*.tar.gz
+share/*.tar.gz.sha256
